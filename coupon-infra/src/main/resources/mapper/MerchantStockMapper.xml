@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.allen.coupon.infra.repository.mapper.MerchantStockMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.allen.coupon.infra.persistence.MerchantStockPo">
+        <id column="id" property="id"/>
+        <result column="merchant_id" property="merchantId"/>
+        <result column="goods_id" property="goodsId"/>
+        <result column="quantity" property="quantity"/>
+    </resultMap>
+
+    <select id="getByMerchantIdAndGoodsIdWithLock" resultType="com.allen.coupon.infra.persistence.MerchantStockPo">
+        select *
+        from merchant_stock
+        where
+            merchant_id = #{merchantId}
+        and goods_id = #{goodsId}
+
+        for update
+
+    </select>
+</mapper>
